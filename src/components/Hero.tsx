@@ -3,7 +3,7 @@ import { ScrollReveal } from './ScrollReveal';
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden pt-20">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20 -z-10" />
       
