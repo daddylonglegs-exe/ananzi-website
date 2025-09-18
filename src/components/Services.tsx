@@ -43,11 +43,11 @@ export const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <ScrollReveal key={service.title} delay={index * 100}>
-              <div className="group p-8 rounded-2xl bg-card border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                  <service.icon className="h-7 w-7 text-accent" />
+              <div className="service-card group">
+                <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-all duration-300">
+                  <service.icon className="service-icon h-7 w-7 text-accent transition-all duration-300" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors duration-300">{service.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{service.description}</p>
               </div>
             </ScrollReveal>

@@ -120,6 +120,14 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Typography Enhancements */
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+  .font-black { font-weight: 900; }
 }
 
 @layer components {
@@ -187,5 +195,56 @@ All colors MUST be HSL.
   
   .nav-link:hover::after {
     width: 100%;
+  }
+  
+  /* Service Card Animations */
+  .service-card {
+    @apply bg-card border border-border rounded-xl p-8 transition-all duration-300 hover:scale-105 hover:border-accent/50;
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .service-card:hover {
+    box-shadow: var(--shadow-large);
+  }
+  
+  .service-card:hover .service-icon {
+    @apply text-accent scale-110;
+  }
+  
+  /* Parallax Effect */
+  .parallax {
+    transform: translateY(var(--parallax-offset, 0));
+    transition: transform 0.1s linear;
+  }
+  
+  /* Form Enhancements */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg bg-input border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-300;
+  }
+  
+  .form-input:focus {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  /* Portfolio Item Animations */
+  .portfolio-item {
+    @apply break-inside-avoid cursor-pointer;
+  }
+  
+  .portfolio-item:hover .portfolio-overlay {
+    @apply opacity-100;
+  }
+  
+  .portfolio-item:hover .portfolio-image {
+    @apply scale-110;
+  }
+  
+  /* Testimonial Cards */
+  .testimonial-card {
+    @apply bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:border-accent/30;
+  }
+  
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-medium);
   }
 }

@@ -1,18 +1,46 @@
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { useEffect, useState } from 'react';
 
 export const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden pt-20">
-      {/* Background Gradient */}
+      {/* Enhanced Background with Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/40 -z-10" />
       
-      <div className="container mx-auto text-center">
+      {/* Enhanced Floating Elements with Parallax */}
+      <div 
+        className="absolute top-20 left-10 w-20 h-20 bg-accent/10 rounded-full blur-xl animate-pulse parallax"
+        style={{ '--parallax-offset': `${mousePosition.y * 0.01}px` } as React.CSSProperties}
+      />
+      <div 
+        className="absolute bottom-20 right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse parallax"
+        style={{ '--parallax-offset': `${mousePosition.y * -0.02}px` } as React.CSSProperties}
+      />
+      <div 
+        className="absolute top-1/2 left-1/4 w-16 h-16 bg-accent/5 rounded-full blur-lg animate-pulse parallax"
+        style={{ '--parallax-offset': `${mousePosition.x * 0.015}px` } as React.CSSProperties}
+      />
+      
+      {/* Content - Lowered positioning */}
+      <div className="container mx-auto text-center mt-16">
         <ScrollReveal>
           <h1 className="text-hero mb-6 leading-tight">
             Bold Digital
             <br />
-            <span className="text-accent">Marketing</span>
+            <span className="text-accent bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">Marketing</span>
             <br />
             That Delivers
           </h1>

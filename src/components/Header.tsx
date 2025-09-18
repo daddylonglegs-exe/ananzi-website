@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
+import { ScrollProgress } from './ScrollProgress';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,11 +25,13 @@ export const Header = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-      }`}
-    >
+    <>
+      <ScrollProgress />
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled ? 'bg-background/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        }`}
+      >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -46,9 +50,12 @@ export const Header = () => {
                 {link.name}
               </a>
             ))}
-            <button className="btn-accent">
-              Get Started
-            </button>
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              <button className="btn-accent">
+                Get Started
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,6 +88,7 @@ export const Header = () => {
           </div>
         )}
       </nav>
-    </header>
+      </header>
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import { ScrollReveal } from './ScrollReveal';
+import { Star, Quote } from 'lucide-react';
 
 export const Clients = () => {
   const clients = [
@@ -8,6 +9,27 @@ export const Clients = () => {
     { name: 'DataFlow', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop' },
     { name: 'CloudForce', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop' },
     { name: 'DigitalEdge', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop' },
+  ];
+
+  const testimonials = [
+    {
+      quote: "Working with this team transformed our digital presence completely. The results exceeded all our expectations.",
+      author: "Sarah Johnson",
+      company: "TechCorp",
+      rating: 5
+    },
+    {
+      quote: "Their strategic approach and creative execution delivered outstanding ROI. Highly recommend their services.",
+      author: "Michael Chen",
+      company: "InnovateLab", 
+      rating: 5
+    },
+    {
+      quote: "Professional, innovative, and results-driven. They became an extension of our team.",
+      author: "Emily Rodriguez",
+      company: "GlobalBrand",
+      rating: 5
+    }
   ];
 
   return (
@@ -44,8 +66,32 @@ export const Clients = () => {
           ))}
         </div>
 
-        {/* Stats */}
+        {/* Testimonials Section */}
         <ScrollReveal delay={400}>
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-12">What Our Clients Say</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="testimonial-card">
+                  <div className="flex items-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-accent fill-current" />
+                    ))}
+                  </div>
+                  <Quote className="h-8 w-8 text-accent/50 mb-4" />
+                  <p className="text-muted-foreground mb-6 leading-relaxed italic">"{testimonial.quote}"</p>
+                  <div>
+                    <div className="font-semibold">{testimonial.author}</div>
+                    <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Stats */}
+        <ScrollReveal delay={500}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-border">
             <div className="text-center">
               <div className="text-4xl font-black text-accent mb-2">250+</div>

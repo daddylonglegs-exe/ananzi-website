@@ -1,7 +1,38 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { useState } from 'react';
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Reset form
+    setFormData({ firstName: '', lastName: '', email: '', message: '' });
+    setIsSubmitting(false);
+    
+    // Show success message (you can integrate with a toast library)
+    alert('Message sent successfully!');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   return (
     <section id="contact" className="py-24 px-6 bg-primary text-primary-foreground">
       <div className="container mx-auto">
@@ -54,46 +85,76 @@ export const Contact = () => {
 
           <ScrollReveal delay={200}>
             <div className="bg-background/10 backdrop-blur-sm rounded-2xl p-8">
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">First Name</label>
+                    <label className="block text-sm font-medium mb-2">First Name *</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 rounded-lg bg-background/20 border border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Last Name</label>
+                    <label className="block text-sm font-medium mb-2">Last Name *</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 rounded-lg bg-background/20 border border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                       placeholder="Doe"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <label className="block text-sm font-medium mb-2">Email *</label>
                   <input 
                     type="email" 
-                    className="w-full px-4 py-3 rounded-lg bg-background/20 border border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                     placeholder="john@company.com"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
+                  <label className="block text-sm font-medium mb-2">Message *</label>
                   <textarea 
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-background/20 border border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 resize-none"
                     placeholder="Tell us about your project..."
                   />
                 </div>
                 
-                <button type="submit" className="w-full btn-accent">
-                  Send Message
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full btn-accent disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-accent-foreground/20 border-t-accent-foreground rounded-full animate-spin mr-2" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="h-4 w-4 ml-2" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>
