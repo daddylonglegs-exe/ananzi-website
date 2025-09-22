@@ -95,7 +95,11 @@ export default function Portfolio() {
                 placeholder="Search projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="form-input pl-10 text-center"
+                className="glass-card form-input pl-10 text-center border-0"
+                style={{
+                  background: 'var(--glass-background)',
+                  backdropFilter: 'var(--glass-backdrop-blur) var(--glass-backdrop-saturate)'
+                }}
               />
             </div>
 
@@ -105,11 +109,16 @@ export default function Portfolio() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`glass-button px-6 py-2 text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-accent text-accent-foreground'
-                      : 'bg-secondary text-secondary-foreground hover:bg-accent/20'
+                      ? 'text-accent border-accent/50'
+                      : 'text-foreground hover:text-accent hover:border-accent/30'
                   }`}
+                  style={{
+                    background: selectedCategory === category 
+                      ? 'linear-gradient(135deg, hsl(var(--accent) / 0.12), hsl(var(--accent) / 0.08))'
+                      : 'var(--glass-background)'
+                  }}
                 >
                   {category}
                 </button>
@@ -123,7 +132,10 @@ export default function Portfolio() {
           {filteredItems.map((item, index) => (
             <ScrollReveal key={index} delay={index * 50}>
               <div className="portfolio-item">
-                <div className="relative overflow-hidden rounded-lg bg-card shadow-medium hover:shadow-large transition-all duration-300 hover:scale-[1.02]">
+                <div className="relative overflow-hidden glass-card-large shadow-medium hover:shadow-large transition-all duration-500 hover:scale-[1.02]"
+                     style={{
+                       background: 'linear-gradient(135deg, var(--glass-background), hsl(var(--accent) / 0.02))'
+                     }}>
                   {/* Loading State */}
                   {loadingItems.includes(index) && (
                     <div className="absolute inset-0 flex items-center justify-center bg-secondary z-10">
@@ -183,11 +195,15 @@ export default function Portfolio() {
 
         {/* Load More Button */}
         <ScrollReveal delay={600}>
-          <div className="text-center mt-16">
-            <button className="btn-accent inline-flex items-center mr-4">
+          <div className="text-center mt-16 space-x-4">
+            <button className="glass-button text-accent px-8 py-4 inline-flex items-center"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
+                      borderColor: 'hsl(var(--accent) / 0.3)'
+                    }}>
               Load More Projects
             </button>
-            <Link to="/case-study" className="btn-primary inline-flex items-center">
+            <Link to="/case-study" className="glass-button text-foreground px-8 py-4 inline-flex items-center">
               View Case Study
             </Link>
           </div>

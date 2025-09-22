@@ -84,7 +84,10 @@ export const Contact = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
-            <div className="bg-background/10 backdrop-blur-sm rounded-2xl p-8">
+            <div className="glass-card-large p-8"
+                 style={{
+                   background: 'linear-gradient(135deg, var(--glass-background), hsl(var(--accent) / 0.05))'
+                 }}>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -142,7 +145,11 @@ export const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full btn-accent disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center"
+                  className="w-full glass-button text-accent disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center py-4"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
+                    borderColor: 'hsl(var(--accent) / 0.3)'
+                  }}
                 >
                   {isSubmitting ? (
                     <>

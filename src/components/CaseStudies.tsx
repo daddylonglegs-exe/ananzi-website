@@ -41,7 +41,10 @@ export const CaseStudies = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {cases.map((caseStudy, index) => (
             <ScrollReveal key={caseStudy.title} delay={index * 150}>
-              <div className="group bg-card border border-border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+              <div className="group glass-card-large p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 cursor-pointer"
+                   style={{
+                     background: 'linear-gradient(135deg, var(--glass-background), hsl(var(--accent) / 0.03))'
+                   }}>
                 <div className="flex items-start justify-between mb-6">
                   <span className="text-sm font-semibold text-accent uppercase tracking-wide">
                     {caseStudy.category}

@@ -28,8 +28,8 @@ export const Header = () => {
     <>
       <ScrollProgress />
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? 'bg-background/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+          isScrolled ? 'glass-nav' : 'bg-transparent'
         }`}
       >
       <nav className="container mx-auto px-6 py-4">
@@ -52,7 +52,7 @@ export const Header = () => {
             ))}
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <button className="btn-accent">
+              <button className="glass-button text-accent">
                 Get Started
               </button>
             </div>
@@ -69,7 +69,7 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border">
+          <div className="md:hidden mt-4 pb-4 glass-card-large border-t-0 rounded-t-none">
             <div className="flex flex-col space-y-4 pt-4">
               {navLinks.map((link) => (
                 <a
@@ -81,7 +81,7 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="btn-accent w-full mt-4">
+              <button className="glass-button text-accent w-full mt-4">
                 Get Started
               </button>
             </div>

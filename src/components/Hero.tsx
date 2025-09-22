@@ -54,12 +54,16 @@ export const Hero = () => {
         </ScrollReveal>
         
         <ScrollReveal delay={400}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="btn-accent group">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <button className="glass-button text-accent group px-8 py-4 text-lg font-semibold"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
+                      borderColor: 'hsl(var(--accent) / 0.3)'
+                    }}>
               Start Your Campaign
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
-            <button className="btn-primary">
+            <button className="glass-button text-foreground px-8 py-4 text-lg font-semibold">
               View Our Work
             </button>
           </div>
