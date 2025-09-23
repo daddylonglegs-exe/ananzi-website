@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -63,9 +64,9 @@ export const Hero = () => {
               Start Your Campaign
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
-            <button className="glass-button text-foreground px-8 py-4 text-lg font-semibold">
+            <Link to="/portfolio" className="glass-button text-foreground px-8 py-4 text-lg font-semibold">
               View Our Work
-            </button>
+            </Link>
           </div>
         </ScrollReveal>
       </div>
