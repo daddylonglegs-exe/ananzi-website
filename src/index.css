@@ -8,36 +8,36 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Core Brand Colors - Inverted */
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Light Mode Colors */
+    --background: 0 0% 98%;
+    --foreground: 224 71.4% 4.1%;
     
     /* Agency Brand System */
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 220.9 39.3% 11%;
+    --primary-foreground: 210 20% 98%;
     
-    --accent: 183 100% 50%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 183 100% 45%;
+    --accent-foreground: 0 0% 98%;
     
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
     
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
     
     /* UI Elements */
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
     
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
     
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 183 100% 45%;
     
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
     
     /* Design System Enhancements */
     --gradient-primary: linear-gradient(135deg, hsl(183 100% 50%), hsl(183 100% 60%));
@@ -47,11 +47,11 @@ All colors MUST be HSL.
     --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.25), 0 2px 4px -2px hsl(0 0% 0% / 0.25);
     --shadow-large: 0 10px 15px -3px hsl(0 0% 0% / 0.25), 0 4px 6px -4px hsl(0 0% 0% / 0.25);
 
-    /* Glassmorphism System - Apple iOS 26 Liquid Glass */
-    --glass-background: hsl(0 0% 100% / 0.08);
-    --glass-border: hsl(0 0% 100% / 0.15);
-    --glass-shadow: 0 8px 32px 0 hsl(0 0% 0% / 0.37);
-    --glass-shadow-large: 0 15px 35px 0 hsl(0 0% 0% / 0.4), 0 5px 15px 0 hsl(0 0% 0% / 0.35);
+    /* Glassmorphism System - Light Mode */
+    --glass-background: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(220 13% 91% / 0.5);
+    --glass-shadow: 0 8px 32px 0 hsl(0 0% 0% / 0.1);
+    --glass-shadow-large: 0 15px 35px 0 hsl(0 0% 0% / 0.15), 0 5px 15px 0 hsl(0 0% 0% / 0.1);
     --glass-backdrop-blur: blur(12px);
     --glass-backdrop-saturate: saturate(180%);
     
@@ -78,23 +78,24 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* Dark Mode Colors */
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
 
     --accent: 183 100% 50%;
     --accent-foreground: 0 0% 9%;
@@ -102,9 +103,9 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -115,8 +116,10 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Dark mode glass adjustments */
-    --glass-background: hsl(0 0% 0% / 0.12);
-    --glass-border: hsl(0 0% 0% / 0.18);
+    --glass-background: hsl(0 0% 100% / 0.08);
+    --glass-border: hsl(0 0% 100% / 0.15);
+    --glass-shadow: 0 8px 32px 0 hsl(0 0% 0% / 0.37);
+    --glass-shadow-large: 0 15px 35px 0 hsl(0 0% 0% / 0.4), 0 5px 15px 0 hsl(0 0% 0% / 0.35);
   }
 }
 
