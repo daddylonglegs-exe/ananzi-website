@@ -81,9 +81,12 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="glass-button text-accent w-full mt-4">
-                Get Started
-              </button>
+              <div className="flex items-center justify-between w-full mt-4 pt-4 border-t border-border/20">
+                <ThemeToggle />
+                <button className="glass-button text-accent">
+                  Get Started
+                </button>
+              </div>
             </div>
           </div>
         )}
