@@ -49,9 +49,6 @@ export const Header = () => {
                 {link.name}
               </a>
             ))}
-            <button className="glass-button text-accent">
-              Get Started
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,9 +74,6 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="glass-button text-accent w-full mt-4">
-                Get Started
-              </button>
             </div>
           </div>
         )}
