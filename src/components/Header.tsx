@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
 import { ScrollProgress } from './ScrollProgress';
 
 export const Header = () => {
@@ -50,12 +49,9 @@ export const Header = () => {
                 {link.name}
               </a>
             ))}
-            <div className="flex items-center space-x-4">
-              <ThemeToggle />
-              <button className="glass-button text-accent">
-                Get Started
-              </button>
-            </div>
+            <button className="glass-button text-accent">
+              Get Started
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,12 +77,9 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="flex items-center justify-between w-full mt-4 pt-4 border-t border-border/20">
-                <ThemeToggle />
-                <button className="glass-button text-accent">
-                  Get Started
-                </button>
-              </div>
+              <button className="glass-button text-accent w-full mt-4">
+                Get Started
+              </button>
             </div>
           </div>
         )}
