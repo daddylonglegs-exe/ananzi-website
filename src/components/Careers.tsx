@@ -106,8 +106,12 @@ export const Careers = () => {
 
                   <div className="pt-4">
                     <Button 
-                      className="w-full glass-button text-foreground hover:text-accent hover:border-accent/50 transition-all"
-                      variant="outline"
+                      className="w-full"
+                      variant="default"
+                      onClick={() => {
+                        // Open email client with pre-filled subject
+                        window.location.href = `mailto:careers@ananzi.com?subject=Application for ${job.title}&body=Dear Hiring Team,%0D%0A%0D%0AI am interested in applying for the ${job.title} position.%0D%0A%0D%0APlease find my resume attached.%0D%0A%0D%0ABest regards`;
+                      }}
                     >
                       Apply Now
                     </Button>
@@ -127,7 +131,12 @@ export const Careers = () => {
                 We're always interested in hearing from talented individuals. Send us your resume and 
                 let us know how you'd like to contribute to our team.
               </p>
-              <Button className="glass-button text-foreground hover:text-accent hover:border-accent/50">
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  window.location.href = 'mailto:careers@ananzi.com?subject=Resume Submission&body=Dear Hiring Team,%0D%0A%0D%0AI would like to submit my resume for future opportunities.%0D%0A%0D%0APlease find my resume attached.%0D%0A%0D%0ABest regards';
+                }}
+              >
                 Send Resume
               </Button>
             </div>

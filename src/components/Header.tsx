@@ -35,9 +35,12 @@ export const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="font-black text-2xl tracking-tight">
+          <a 
+            href="/" 
+            className="font-black text-2xl tracking-tight hover:opacity-80 transition-opacity cursor-pointer"
+          >
             Ananzi<span className="text-accent">.</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
