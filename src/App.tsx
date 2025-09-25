@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import CareersPage from "./pages/Careers";
 import CaseStudy from "./pages/CaseStudy";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import { BackToTop } from "./components/BackToTop";
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/case-study" element={<CaseStudy />} />
+            <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

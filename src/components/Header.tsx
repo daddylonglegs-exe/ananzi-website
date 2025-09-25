@@ -21,7 +21,7 @@ export const Header = () => {
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Careers', href: '/careers' },
     { name: 'Case Studies', href: '#case-studies' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
