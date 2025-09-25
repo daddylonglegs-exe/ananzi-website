@@ -3,6 +3,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Search, Filter, Share2, ArrowLeft } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { Footer } from '@/components/Footer';
 
 export default function Portfolio() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -209,6 +210,7 @@ export default function Portfolio() {
           </div>
         </ScrollReveal>
       </div>
+      <Footer />
     </div>
   );
 }

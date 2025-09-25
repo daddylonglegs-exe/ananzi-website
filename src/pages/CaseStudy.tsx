@@ -1,6 +1,7 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Footer } from '@/components/Footer';
 
 export default function CaseStudy() {
   const caseStudy = {
@@ -104,6 +105,7 @@ export default function CaseStudy() {
           </div>
         </ScrollReveal>
       </div>
+      <Footer />
     </div>
   );
 }
