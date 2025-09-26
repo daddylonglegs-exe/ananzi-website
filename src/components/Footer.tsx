@@ -1,6 +1,8 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
+import { Newsletter } from './Newsletter';
 
 export const Footer = () => {
   return (
@@ -21,7 +23,7 @@ export const Footer = () => {
               asChild
               className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-base font-medium"
             >
-              <a href="/contact">Get Started Today</a>
+              <Link to="/contact">Get Started Today</Link>
             </Button>
           </div>
         </ScrollReveal>
@@ -34,7 +36,9 @@ export const Footer = () => {
               </div>
               <div className="text-center md:text-left">
                 <div className="font-semibold">Email Us</div>
-                <div className="opacity-80">hello@ananzidigital.com</div>
+                <a href="mailto:hello@ananzidigital.com" className="opacity-80 hover:text-accent transition-colors">
+                  hello@ananzidigital.com
+                </a>
               </div>
             </div>
             
@@ -44,7 +48,9 @@ export const Footer = () => {
               </div>
               <div className="text-center md:text-left">
                 <div className="font-semibold">Call Us</div>
-                <div className="opacity-80">+1 (555) 123-4567</div>
+                <a href="tel:+15551234567" className="opacity-80 hover:text-accent transition-colors">
+                  +1 (555) 123-4567
+                </a>
               </div>
             </div>
             
@@ -67,14 +73,20 @@ export const Footer = () => {
                 Ananzi<span className="text-accent">.</span>
               </div>
               <div className="flex space-x-6 text-sm opacity-80">
-                <a href="/portfolio" className="hover:text-accent transition-colors">Portfolio</a>
-                <a href="/careers" className="hover:text-accent transition-colors">Careers</a>
-                <a href="/contact" className="hover:text-accent transition-colors">Contact</a>
+                <Link to="/portfolio" className="hover:text-accent transition-colors">Portfolio</Link>
+                <Link to="/careers" className="hover:text-accent transition-colors">Careers</Link>
+                <Link to="/contact" className="hover:text-accent transition-colors">Contact</Link>
               </div>
               <div className="text-sm opacity-60">
                 © 2024 Ananzi Digital. All rights reserved.
               </div>
             </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={600}>
+          <div className="mt-12 pt-8 border-t border-primary-foreground/20">
+            <Newsletter />
           </div>
         </ScrollReveal>
       </div>

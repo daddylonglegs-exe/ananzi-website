@@ -1,6 +1,7 @@
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 export const CaseStudies = () => {
@@ -162,9 +163,9 @@ export const CaseStudies = () => {
 
         <ScrollReveal delay={500}>
           <div className="text-center mt-16">
-            <button className="btn-primary">
+            <Link to="/portfolio" className="btn-primary">
               View All Case Studies
-            </button>
+            </Link>
           </div>
         </ScrollReveal>
       </div>

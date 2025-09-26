@@ -197,12 +197,14 @@ export default function Portfolio() {
         {/* Load More Button */}
         <ScrollReveal delay={600}>
           <div className="text-center mt-16 space-x-4">
-            <button className="glass-button text-accent px-8 py-4 inline-flex items-center"
-                    style={{
-                      background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
-                      borderColor: 'hsl(var(--accent) / 0.3)'
-                    }}>
-              Load More Projects
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="glass-button text-accent px-8 py-4 inline-flex items-center"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
+                borderColor: 'hsl(var(--accent) / 0.3)'
+              }}>
+              Back to Top
             </button>
             <Link to="/case-study" className="glass-button text-foreground px-8 py-4 inline-flex items-center">
               View Case Study
