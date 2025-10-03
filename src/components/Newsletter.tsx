@@ -13,7 +13,25 @@ export const Newsletter = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    
+    // Validate email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (email.length > 255) {
+      toast({
+        title: "Error",
+        description: "Email address is too long.",
+        variant: "destructive"
+      });
+      return;
+    }
 
     setIsLoading(true);
     
@@ -66,6 +84,7 @@ export const Newsletter = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            maxLength={255}
             className="flex-1"
           />
           <Button 

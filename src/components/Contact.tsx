@@ -1,8 +1,10 @@
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export const Contact = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -13,6 +15,44 @@ export const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic validation
+    if (formData.firstName.trim().length < 2 || formData.firstName.trim().length > 100) {
+      toast({
+        title: "Error",
+        description: "First name must be between 2 and 100 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (formData.lastName.trim().length < 2 || formData.lastName.trim().length > 100) {
+      toast({
+        title: "Error",
+        description: "Last name must be between 2 and 100 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (formData.message.trim().length < 10 || formData.message.trim().length > 1000) {
+      toast({
+        title: "Error",
+        description: "Message must be between 10 and 1000 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -22,8 +62,10 @@ export const Contact = () => {
     setFormData({ firstName: '', lastName: '', email: '', message: '' });
     setIsSubmitting(false);
     
-    // Show success message (you can integrate with a toast library)
-    alert('Message sent successfully!');
+    toast({
+      title: "Success!",
+      description: "Your message has been sent successfully. We'll get back to you soon!",
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -56,7 +98,9 @@ export const Contact = () => {
                   </div>
                   <div>
                     <div className="font-semibold">Email Us</div>
-                    <div className="opacity-80">hello@ananzidigital.com</div>
+                    <a href="mailto:hello@ananzidigital.com" className="opacity-80 hover:text-accent transition-colors">
+                      hello@ananzidigital.com
+                    </a>
                   </div>
                 </div>
                 
@@ -66,7 +110,9 @@ export const Contact = () => {
                   </div>
                   <div>
                     <div className="font-semibold">Call Us</div>
-                    <div className="opacity-80">+1 (555) 123-4567</div>
+                    <a href="tel:+15551234567" className="opacity-80 hover:text-accent transition-colors">
+                      +1 (555) 123-4567
+                    </a>
                   </div>
                 </div>
                 
@@ -98,6 +144,8 @@ export const Contact = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
+                      minLength={2}
+                      maxLength={100}
                       className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                       placeholder="John"
                     />
@@ -110,6 +158,8 @@ export const Contact = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
+                      minLength={2}
+                      maxLength={100}
                       className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                       placeholder="Doe"
                     />
@@ -124,6 +174,7 @@ export const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    maxLength={255}
                     className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60"
                     placeholder="john@company.com"
                   />
@@ -137,6 +188,8 @@ export const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    minLength={10}
+                    maxLength={1000}
                     className="form-input bg-background/20 border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 resize-none"
                     placeholder="Tell us about your project..."
                   />

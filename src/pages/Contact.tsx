@@ -20,6 +20,44 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate inputs
+    if (formData.firstName.trim().length < 2 || formData.firstName.trim().length > 100) {
+      toast({
+        title: "Error",
+        description: "First name must be between 2 and 100 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (formData.lastName.trim().length < 2 || formData.lastName.trim().length > 100) {
+      toast({
+        title: "Error",
+        description: "Last name must be between 2 and 100 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (formData.message.trim().length < 10 || formData.message.trim().length > 1000) {
+      toast({
+        title: "Error",
+        description: "Message must be between 10 and 1000 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -30,8 +68,8 @@ const Contact = () => {
     setIsSubmitting(false);
     
     toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you as soon as possible.",
+      title: "Success!",
+      description: "Your message has been sent successfully. We'll get back to you soon!",
     });
   };
 
@@ -88,7 +126,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <div className="font-semibold text-foreground">Email Us</div>
-                      <div className="text-muted-foreground">hello@ananzidigital.com</div>
+                      <a href="mailto:hello@ananzidigital.com" className="text-muted-foreground hover:text-accent transition-colors">
+                        hello@ananzidigital.com
+                      </a>
                     </div>
                   </div>
                   
@@ -98,7 +138,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <div className="font-semibold text-foreground">Call Us</div>
-                      <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                      <a href="tel:+15551234567" className="text-muted-foreground hover:text-accent transition-colors">
+                        +1 (555) 123-4567
+                      </a>
                     </div>
                   </div>
                   
@@ -138,6 +180,8 @@ const Contact = () => {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
+                        minLength={2}
+                        maxLength={100}
                         placeholder="John"
                         className="bg-background/50 border-border/30 focus:border-accent transition-colors"
                       />
@@ -150,6 +194,8 @@ const Contact = () => {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
+                        minLength={2}
+                        maxLength={100}
                         placeholder="Doe"
                         className="bg-background/50 border-border/30 focus:border-accent transition-colors"
                       />
@@ -165,6 +211,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      maxLength={255}
                       placeholder="john@company.com"
                       className="bg-background/50 border-border/30 focus:border-accent transition-colors"
                     />
@@ -179,6 +226,8 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      minLength={10}
+                      maxLength={1000}
                       placeholder="Tell us about your project, goals, and how we can help..."
                       className="bg-background/50 border-border/30 focus:border-accent transition-colors resize-none"
                     />
