@@ -1,8 +1,7 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
-import { Newsletter } from './Newsletter';
 
 export const Footer = () => {
   return (
@@ -72,21 +71,26 @@ export const Footer = () => {
               <div className="font-black text-2xl tracking-tight">
                 Ananzi<span className="text-accent">.</span>
               </div>
-              <div className="flex space-x-6 text-sm opacity-80">
-                <Link to="/portfolio" className="hover:text-accent transition-colors">Portfolio</Link>
-                <Link to="/careers" className="hover:text-accent transition-colors">Careers</Link>
-                <Link to="/contact" className="hover:text-accent transition-colors">Contact</Link>
+              <div className="flex items-center space-x-6">
+                <div className="flex space-x-6 text-sm opacity-80">
+                  <Link to="/portfolio" className="hover:text-accent transition-colors">Portfolio</Link>
+                  <Link to="/careers" className="hover:text-accent transition-colors">Careers</Link>
+                  <Link to="/contact" className="hover:text-accent transition-colors">Contact</Link>
+                </div>
+                <a
+                  href="https://www.instagram.com/ananzi_infotech/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-accent/20 hover:bg-accent/30 flex items-center justify-center transition-colors"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="h-5 w-5 text-accent" />
+                </a>
               </div>
               <div className="text-sm opacity-60">
                 © 2024 Ananzi Digital. All rights reserved.
               </div>
             </div>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={600}>
-          <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-            <Newsletter />
           </div>
         </ScrollReveal>
       </div>

@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ScrollProgress } from './ScrollProgress';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (location.pathname !== '/') {
+      e.preventDefault();
+      navigate('/' + href);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +61,7 @@ export const Header = () => {
                   key={link.name}
                   href={link.href}
                   className="nav-link"
+                  onClick={(e) => handleAnchorClick(e, link.href)}
                 >
                   {link.name}
                 </a>
@@ -87,7 +97,10 @@ export const Header = () => {
                     key={link.name}
                     href={link.href}
                     className="nav-link text-lg"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleAnchorClick(e, link.href);
+                      setIsMobileMenuOpen(false);
+                    }}
                   >
                     {link.name}
                   </a>
