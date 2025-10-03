@@ -79,7 +79,7 @@ export const Footer = () => {
                 </div>
                 <a
                   href="https://www.instagram.com/ananzi_infotech/"
-                  target="_top"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-accent/20 hover:bg-accent/30 flex items-center justify-center transition-colors"
                   aria-label="Follow us on Instagram"
