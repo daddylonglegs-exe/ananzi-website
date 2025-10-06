@@ -2,6 +2,15 @@ import { Briefcase, MapPin, Clock, Users } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Label } from './ui/label';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { toast } from '@/hooks/use-toast';
+import { useState } from 'react';
 
 const jobOpenings = [
   {
@@ -46,7 +55,34 @@ const jobOpenings = [
   }
 ];
 
+const applicationSchema = z.object({
+  fullName: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name must be less than 100 characters'),
+  email: z.string().email('Invalid email address').max(255, 'Email must be less than 255 characters'),
+  phone: z.string().min(10, 'Phone number must be at least 10 digits').max(20, 'Phone number must be less than 20 digits'),
+  linkedin: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
+  portfolio: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
+  coverLetter: z.string().min(50, 'Cover letter must be at least 50 characters').max(2000, 'Cover letter must be less than 2000 characters'),
+});
+
+type ApplicationForm = z.infer<typeof applicationSchema>;
+
 export const Careers = () => {
+  const [openDialog, setOpenDialog] = useState<number | null>(null);
+  
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ApplicationForm>({
+    resolver: zodResolver(applicationSchema),
+  });
+
+  const onSubmit = (data: ApplicationForm, jobTitle: string) => {
+    console.log('Application submitted:', { ...data, jobTitle });
+    toast({
+      title: 'Application Submitted!',
+      description: `Thank you for applying for the ${jobTitle} position. We'll review your application and get back to you soon.`,
+    });
+    reset();
+    setOpenDialog(null);
+  };
+
   return (
     <section id="careers" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -105,16 +141,114 @@ export const Careers = () => {
                   </div>
 
                   <div className="pt-4">
-                    <Button 
-                      className="w-full"
-                      variant="default"
-                      onClick={() => {
-                        // Open email client with pre-filled subject
-                        window.location.href = `mailto:careers@ananzi.com?subject=Application for ${job.title}&body=Dear Hiring Team,%0D%0A%0D%0AI am interested in applying for the ${job.title} position.%0D%0A%0D%0APlease find my resume attached.%0D%0A%0D%0ABest regards`;
-                      }}
-                    >
-                      Apply Now
-                    </Button>
+                    <Dialog open={openDialog === job.id} onOpenChange={(open) => setOpenDialog(open ? job.id : null)}>
+                      <DialogTrigger asChild>
+                        <Button className="w-full" variant="default">
+                          Apply Now
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>Apply for {job.title}</DialogTitle>
+                          <DialogDescription>
+                            Fill out the form below to submit your application. All fields are required unless marked optional.
+                          </DialogDescription>
+                        </DialogHeader>
+                        
+                        <form onSubmit={handleSubmit((data) => onSubmit(data, job.title))} className="space-y-4">
+                          <div>
+                            <Label htmlFor={`fullName-${job.id}`}>Full Name *</Label>
+                            <Input
+                              id={`fullName-${job.id}`}
+                              {...register('fullName')}
+                              placeholder="John Doe"
+                              className="mt-1"
+                            />
+                            {errors.fullName && (
+                              <p className="text-sm text-destructive mt-1">{errors.fullName.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor={`email-${job.id}`}>Email *</Label>
+                            <Input
+                              id={`email-${job.id}`}
+                              type="email"
+                              {...register('email')}
+                              placeholder="john@example.com"
+                              className="mt-1"
+                            />
+                            {errors.email && (
+                              <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor={`phone-${job.id}`}>Phone Number *</Label>
+                            <Input
+                              id={`phone-${job.id}`}
+                              type="tel"
+                              {...register('phone')}
+                              placeholder="+1 (555) 123-4567"
+                              className="mt-1"
+                            />
+                            {errors.phone && (
+                              <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor={`linkedin-${job.id}`}>LinkedIn Profile (Optional)</Label>
+                            <Input
+                              id={`linkedin-${job.id}`}
+                              type="url"
+                              {...register('linkedin')}
+                              placeholder="https://linkedin.com/in/yourprofile"
+                              className="mt-1"
+                            />
+                            {errors.linkedin && (
+                              <p className="text-sm text-destructive mt-1">{errors.linkedin.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor={`portfolio-${job.id}`}>Portfolio/Website (Optional)</Label>
+                            <Input
+                              id={`portfolio-${job.id}`}
+                              type="url"
+                              {...register('portfolio')}
+                              placeholder="https://yourportfolio.com"
+                              className="mt-1"
+                            />
+                            {errors.portfolio && (
+                              <p className="text-sm text-destructive mt-1">{errors.portfolio.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor={`coverLetter-${job.id}`}>Cover Letter *</Label>
+                            <Textarea
+                              id={`coverLetter-${job.id}`}
+                              {...register('coverLetter')}
+                              placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+                              className="mt-1 min-h-[150px]"
+                            />
+                            {errors.coverLetter && (
+                              <p className="text-sm text-destructive mt-1">{errors.coverLetter.message}</p>
+                            )}
+                          </div>
+
+                          <div className="flex gap-3 pt-4">
+                            <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1">
+                              Cancel
+                            </Button>
+                            <Button type="submit" className="flex-1">
+                              Submit Application
+                            </Button>
+                          </div>
+                        </form>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </CardContent>
               </Card>
@@ -131,14 +265,114 @@ export const Careers = () => {
                 We're always interested in hearing from talented individuals. Send us your resume and 
                 let us know how you'd like to contribute to our team.
               </p>
-              <Button 
-                variant="outline"
-                onClick={() => {
-                  window.location.href = 'mailto:careers@ananzi.com?subject=Resume Submission&body=Dear Hiring Team,%0D%0A%0D%0AI would like to submit my resume for future opportunities.%0D%0A%0D%0APlease find my resume attached.%0D%0A%0D%0ABest regards';
-                }}
-              >
-                Send Resume
-              </Button>
+              <Dialog open={openDialog === 0} onOpenChange={(open) => setOpenDialog(open ? 0 : null)}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">
+                    Send Resume
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Submit Your Resume</DialogTitle>
+                    <DialogDescription>
+                      We'd love to hear from you! Fill out the form below and we'll keep your information on file for future opportunities.
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  <form onSubmit={handleSubmit((data) => onSubmit(data, 'General Application'))} className="space-y-4">
+                    <div>
+                      <Label htmlFor="fullName-general">Full Name *</Label>
+                      <Input
+                        id="fullName-general"
+                        {...register('fullName')}
+                        placeholder="John Doe"
+                        className="mt-1"
+                      />
+                      {errors.fullName && (
+                        <p className="text-sm text-destructive mt-1">{errors.fullName.message}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="email-general">Email *</Label>
+                      <Input
+                        id="email-general"
+                        type="email"
+                        {...register('email')}
+                        placeholder="john@example.com"
+                        className="mt-1"
+                      />
+                      {errors.email && (
+                        <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="phone-general">Phone Number *</Label>
+                      <Input
+                        id="phone-general"
+                        type="tel"
+                        {...register('phone')}
+                        placeholder="+1 (555) 123-4567"
+                        className="mt-1"
+                      />
+                      {errors.phone && (
+                        <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="linkedin-general">LinkedIn Profile (Optional)</Label>
+                      <Input
+                        id="linkedin-general"
+                        type="url"
+                        {...register('linkedin')}
+                        placeholder="https://linkedin.com/in/yourprofile"
+                        className="mt-1"
+                      />
+                      {errors.linkedin && (
+                        <p className="text-sm text-destructive mt-1">{errors.linkedin.message}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="portfolio-general">Portfolio/Website (Optional)</Label>
+                      <Input
+                        id="portfolio-general"
+                        type="url"
+                        {...register('portfolio')}
+                        placeholder="https://yourportfolio.com"
+                        className="mt-1"
+                      />
+                      {errors.portfolio && (
+                        <p className="text-sm text-destructive mt-1">{errors.portfolio.message}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <Label htmlFor="coverLetter-general">Tell Us About Yourself *</Label>
+                      <Textarea
+                        id="coverLetter-general"
+                        {...register('coverLetter')}
+                        placeholder="Tell us about your background, skills, and what kind of opportunities you're interested in..."
+                        className="mt-1 min-h-[150px]"
+                      />
+                      {errors.coverLetter && (
+                        <p className="text-sm text-destructive mt-1">{errors.coverLetter.message}</p>
+                      )}
+                    </div>
+
+                    <div className="flex gap-3 pt-4">
+                      <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1">
+                        Cancel
+                      </Button>
+                      <Button type="submit" className="flex-1">
+                        Submit
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </ScrollReveal>
