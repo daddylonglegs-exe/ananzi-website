@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { toast } from '@/hooks/use-toast';
 import { useState } from 'react';
+import { Upload } from 'lucide-react';
 
 const jobOpenings = [
   {
@@ -62,25 +63,67 @@ const applicationSchema = z.object({
   linkedin: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
   portfolio: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
   coverLetter: z.string().min(50, 'Cover letter must be at least 50 characters').max(2000, 'Cover letter must be less than 2000 characters'),
+  resume: z.any().refine((files) => files?.length > 0, 'Resume is required'),
 });
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
 
+// Replace with your Formspree endpoint
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 export const Careers = () => {
   const [openDialog, setOpenDialog] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ApplicationForm>({
     resolver: zodResolver(applicationSchema),
   });
 
-  const onSubmit = (data: ApplicationForm, jobTitle: string) => {
-    console.log('Application submitted:', { ...data, jobTitle });
-    toast({
-      title: 'Application Submitted!',
-      description: `Thank you for applying for the ${jobTitle} position. We'll review your application and get back to you soon.`,
-    });
-    reset();
-    setOpenDialog(null);
+  const onSubmit = async (data: ApplicationForm, jobTitle: string) => {
+    setIsSubmitting(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('fullName', data.fullName);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone);
+      formData.append('linkedin', data.linkedin || '');
+      formData.append('portfolio', data.portfolio || '');
+      formData.append('coverLetter', data.coverLetter);
+      formData.append('jobTitle', jobTitle);
+      
+      // Add resume file
+      if (data.resume && data.resume[0]) {
+        formData.append('resume', data.resume[0]);
+      }
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        },
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Application Submitted!',
+          description: `Thank you for applying for the ${jobTitle} position. We'll review your application and get back to you soon.`,
+        });
+        reset();
+        setOpenDialog(null);
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: 'Submission Failed',
+        description: 'There was an error submitting your application. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -238,12 +281,32 @@ export const Careers = () => {
                             )}
                           </div>
 
+                          <div>
+                            <Label htmlFor={`resume-${job.id}`}>Resume (PDF) *</Label>
+                            <div className="mt-1">
+                              <Input
+                                id={`resume-${job.id}`}
+                                type="file"
+                                accept=".pdf"
+                                {...register('resume')}
+                                className="cursor-pointer"
+                              />
+                              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                                <Upload className="h-3 w-3" />
+                                Upload your resume in PDF format (max 5MB)
+                              </p>
+                            </div>
+                            {errors.resume && (
+                              <p className="text-sm text-destructive mt-1">{errors.resume.message as string}</p>
+                            )}
+                          </div>
+
                           <div className="flex gap-3 pt-4">
-                            <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1">
+                            <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1" disabled={isSubmitting}>
                               Cancel
                             </Button>
-                            <Button type="submit" className="flex-1">
-                              Submit Application
+                            <Button type="submit" className="flex-1" disabled={isSubmitting}>
+                              {isSubmitting ? 'Submitting...' : 'Submit Application'}
                             </Button>
                           </div>
                         </form>
@@ -362,12 +425,32 @@ export const Careers = () => {
                       )}
                     </div>
 
+                    <div>
+                      <Label htmlFor="resume-general">Resume (PDF) *</Label>
+                      <div className="mt-1">
+                        <Input
+                          id="resume-general"
+                          type="file"
+                          accept=".pdf"
+                          {...register('resume')}
+                          className="cursor-pointer"
+                        />
+                        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                          <Upload className="h-3 w-3" />
+                          Upload your resume in PDF format (max 5MB)
+                        </p>
+                      </div>
+                      {errors.resume && (
+                        <p className="text-sm text-destructive mt-1">{errors.resume.message as string}</p>
+                      )}
+                    </div>
+
                     <div className="flex gap-3 pt-4">
-                      <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1">
+                      <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1" disabled={isSubmitting}>
                         Cancel
                       </Button>
-                      <Button type="submit" className="flex-1">
-                        Submit
+                      <Button type="submit" className="flex-1" disabled={isSubmitting}>
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
                       </Button>
                     </div>
                   </form>
