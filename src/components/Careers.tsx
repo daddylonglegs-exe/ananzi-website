@@ -62,7 +62,6 @@ const applicationSchema = z.object({
   phone: z.string().min(10, 'Phone number must be at least 10 digits').max(20, 'Phone number must be less than 20 digits'),
   linkedin: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
   portfolio: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
-  coverLetter: z.string().min(50, 'Cover letter must be at least 50 characters').max(2000, 'Cover letter must be less than 2000 characters'),
   resume: z.any().refine((files) => files?.length > 0, 'Resume is required'),
 });
 
@@ -89,7 +88,6 @@ export const Careers = () => {
       formData.append('phone', data.phone);
       formData.append('linkedin', data.linkedin || '');
       formData.append('portfolio', data.portfolio || '');
-      formData.append('coverLetter', data.coverLetter);
       formData.append('jobTitle', jobTitle);
       
       // Add resume file
@@ -269,19 +267,6 @@ export const Careers = () => {
                           </div>
 
                           <div>
-                            <Label htmlFor={`coverLetter-${job.id}`}>Cover Letter *</Label>
-                            <Textarea
-                              id={`coverLetter-${job.id}`}
-                              {...register('coverLetter')}
-                              placeholder="Tell us why you're interested in this position and what makes you a great fit..."
-                              className="mt-1 min-h-[150px]"
-                            />
-                            {errors.coverLetter && (
-                              <p className="text-sm text-destructive mt-1">{errors.coverLetter.message}</p>
-                            )}
-                          </div>
-
-                          <div>
                             <Label htmlFor={`resume-${job.id}`}>Resume (PDF) *</Label>
                             <div className="mt-1">
                               <Input
@@ -409,19 +394,6 @@ export const Careers = () => {
                       />
                       {errors.portfolio && (
                         <p className="text-sm text-destructive mt-1">{errors.portfolio.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="coverLetter-general">Tell Us About Yourself *</Label>
-                      <Textarea
-                        id="coverLetter-general"
-                        {...register('coverLetter')}
-                        placeholder="Tell us about your background, skills, and what kind of opportunities you're interested in..."
-                        className="mt-1 min-h-[150px]"
-                      />
-                      {errors.coverLetter && (
-                        <p className="text-sm text-destructive mt-1">{errors.coverLetter.message}</p>
                       )}
                     </div>
 
