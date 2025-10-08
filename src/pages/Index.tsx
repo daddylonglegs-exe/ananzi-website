@@ -5,10 +5,12 @@ import { About } from '@/components/About';
 import { CaseStudies } from '@/components/CaseStudies';
 import { Clients } from '@/components/Clients';
 import { Footer } from '@/components/Footer';
+import { NetworkOverlay } from '@/components/NetworkOverlay';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <NetworkOverlay />
       <Header />
       <main>
         <Hero />
