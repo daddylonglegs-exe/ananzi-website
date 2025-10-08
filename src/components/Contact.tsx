@@ -76,53 +76,53 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-primary text-primary-foreground">
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 bg-primary text-primary-foreground">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-start">
           <ScrollReveal>
             <div>
-              <h2 className="text-section-title mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8">
                 Ready to Make
                 <br />
                 <span className="text-accent">Bold Moves?</span>
               </h2>
-              <p className="text-large mb-12 opacity-90 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed">
                 Let's discuss how we can transform your marketing and drive 
                 the results your business deserves.
               </p>
               
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-accent" />
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-4 sm:h-5 w-4 sm:w-5 text-accent" />
                   </div>
-                  <div>
-                    <div className="font-semibold">Email Us</div>
-                    <a href="mailto:hello@ananzidigital.com" className="opacity-80 hover:text-accent transition-colors">
+                  <div className="min-w-0">
+                    <div className="font-semibold text-sm sm:text-base">Email Us</div>
+                    <a href="mailto:hello@ananzidigital.com" className="opacity-80 hover:text-accent transition-colors text-sm sm:text-base break-all">
                       hello@ananzidigital.com
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-accent" />
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-4 sm:h-5 w-4 sm:w-5 text-accent" />
                   </div>
                   <div>
-                    <div className="font-semibold">Call Us</div>
-                    <a href="tel:+15551234567" className="opacity-80 hover:text-accent transition-colors">
+                    <div className="font-semibold text-sm sm:text-base">Call Us</div>
+                    <a href="tel:+15551234567" className="opacity-80 hover:text-accent transition-colors text-sm sm:text-base">
                       +1 (555) 123-4567
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                    <MapPin className="h-5 w-5 text-accent" />
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-4 sm:h-5 w-4 sm:w-5 text-accent" />
                   </div>
                   <div>
-                    <div className="font-semibold">Visit Us</div>
-                    <div className="opacity-80">New York, NY</div>
+                    <div className="font-semibold text-sm sm:text-base">Visit Us</div>
+                    <div className="opacity-80 text-sm sm:text-base">New York, NY</div>
                   </div>
                 </div>
               </div>
@@ -130,12 +130,12 @@ export const Contact = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
-            <div className="glass-card-large p-8"
+            <div className="glass-card-large p-6 sm:p-8"
                  style={{
                    background: 'linear-gradient(135deg, var(--glass-background), hsl(var(--accent) / 0.05))'
                  }}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">First Name *</label>
                     <input 
@@ -198,7 +198,7 @@ export const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full glass-button text-accent disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center py-4"
+                  className="w-full glass-button text-accent disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center py-3 sm:py-4 text-sm sm:text-base"
                   style={{
                     background: 'linear-gradient(135deg, hsl(var(--accent) / 0.15), hsl(var(--accent) / 0.25))',
                     borderColor: 'hsl(var(--accent) / 0.3)'

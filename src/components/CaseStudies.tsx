@@ -59,15 +59,15 @@ export const CaseStudies = () => {
   ];
 
   return (
-    <section id="case-studies" className="py-24 px-6">
+    <section id="case-studies" className="py-16 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <h2 className="text-section-title mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
               Success Stories That
               <span className="text-accent"> Speak Volumes</span>
             </h2>
-            <p className="text-large text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Real brands. Real results. Real impact on bottom lines.
             </p>
           </div>
@@ -84,28 +84,28 @@ export const CaseStudies = () => {
                      style={{
                        background: 'linear-gradient(135deg, var(--glass-background), hsl(var(--accent) / 0.03))'
                      }}>
-                  <CollapsibleTrigger className="w-full p-8 text-left hover:bg-accent/5 transition-colors">
+                  <CollapsibleTrigger className="w-full p-5 sm:p-8 text-left hover:bg-accent/5 transition-colors">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <div className="flex items-start justify-between mb-6">
-                          <span className="text-sm font-semibold text-accent uppercase tracking-wide">
+                        <div className="flex items-start justify-between mb-4 sm:mb-6">
+                          <span className="text-xs sm:text-sm font-semibold text-accent uppercase tracking-wide">
                             {caseStudy.category}
                           </span>
-                          <div className="flex items-center space-x-2">
-                            <ArrowUpRight className="h-5 w-5 text-muted-foreground" />
-                            <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${
+                          <div className="flex items-center space-x-2 flex-shrink-0 ml-2">
+                            <ArrowUpRight className="h-4 sm:h-5 w-4 sm:w-5 text-muted-foreground" />
+                            <ChevronDown className={`h-4 sm:h-5 w-4 sm:w-5 text-muted-foreground transition-transform duration-200 ${
                               expandedCase === index ? 'rotate-180' : ''
                             }`} />
                           </div>
                         </div>
                         
-                        <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
-                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{caseStudy.title}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                           {caseStudy.description}
                         </p>
                         
-                        <div className="pt-4 border-t border-border">
-                          <div className="text-2xl font-black text-accent">
+                        <div className="pt-3 sm:pt-4 border-t border-border">
+                          <div className="text-xl sm:text-2xl font-black text-accent">
                             {caseStudy.results}
                           </div>
                         </div>
@@ -114,41 +114,41 @@ export const CaseStudies = () => {
                   </CollapsibleTrigger>
 
                   <CollapsibleContent>
-                    <div className="px-8 pb-8 pt-0 border-t border-border">
-                      <div className="grid md:grid-cols-2 gap-8 mt-6">
+                    <div className="px-5 sm:px-8 pb-5 sm:pb-8 pt-0 border-t border-border">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-4 sm:mt-6">
                         <div>
-                          <h4 className="text-xl font-bold mb-4">The Challenge</h4>
-                          <p className="text-muted-foreground mb-6 leading-relaxed">
+                          <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">The Challenge</h4>
+                          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                             {caseStudy.challenge}
                           </p>
                           
-                          <h4 className="text-xl font-bold mb-4">Our Solution</h4>
-                          <p className="text-muted-foreground leading-relaxed">
+                          <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Our Solution</h4>
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                             {caseStudy.solution}
                           </p>
                         </div>
                         
                         <div>
                           <div className="mb-6">
-                            <h4 className="text-xl font-bold mb-4">Key Metrics</h4>
-                            <div className="space-y-3">
+                            <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Key Metrics</h4>
+                            <div className="space-y-2 sm:space-y-3">
                               {caseStudy.metrics.map((metric, metricIndex) => (
-                                <div key={metricIndex} className="flex items-center">
-                                  <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0" />
-                                  <span className="text-foreground font-medium">{metric}</span>
+                                <div key={metricIndex} className="flex items-start">
+                                  <div className="w-2 h-2 bg-accent rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5" />
+                                  <span className="text-sm sm:text-base text-foreground font-medium">{metric}</span>
                                 </div>
                               ))}
                             </div>
                           </div>
                           
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-2 gap-3 sm:gap-4">
                             <div>
-                              <span className="text-sm text-muted-foreground">Client</span>
-                              <p className="font-semibold">{caseStudy.client}</p>
+                              <span className="text-xs sm:text-sm text-muted-foreground">Client</span>
+                              <p className="text-sm sm:text-base font-semibold">{caseStudy.client}</p>
                             </div>
                             <div>
-                              <span className="text-sm text-muted-foreground">Duration</span>
-                              <p className="font-semibold">{caseStudy.duration}</p>
+                              <span className="text-xs sm:text-sm text-muted-foreground">Duration</span>
+                              <p className="text-sm sm:text-base font-semibold">{caseStudy.duration}</p>
                             </div>
                           </div>
                         </div>

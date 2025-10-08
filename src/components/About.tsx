@@ -9,17 +9,17 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 bg-secondary/30">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 bg-secondary/30">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
           <ScrollReveal>
             <div>
-              <h2 className="text-section-title mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8">
                 We're Not Your
                 <br />
                 <span className="text-accent">Typical Agency</span>
               </h2>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
                 <p>
                   At Ananzi Digital, we believe marketing should be bold, measurable, and 
                   unapologetically effective. We don't do cookie-cutter campaigns or 
@@ -39,13 +39,13 @@ export const About = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-6 sm:gap-8">
               {stats.map((stat, index) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-4xl md:text-5xl font-black text-accent mb-2">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-accent mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                  <div className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wide">
                     {stat.label}
                   </div>
                 </div>
