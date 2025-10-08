@@ -53,9 +53,9 @@ export const NetworkOverlay = () => {
         if (particle.y > canvas.height) particle.y = 0;
 
         // Draw particle
-        ctx.fillStyle = 'hsl(var(--accent) / 0.6)';
+        ctx.fillStyle = 'hsl(183 100% 60% / 0.8)';
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
+        ctx.arc(particle.x, particle.y, 2.5, 0, Math.PI * 2);
         ctx.fill();
 
         // Draw connections
@@ -64,10 +64,10 @@ export const NetworkOverlay = () => {
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
-            const opacity = (1 - distance / 150) * 0.5;
-            ctx.strokeStyle = `hsl(var(--accent) / ${opacity})`;
-            ctx.lineWidth = 1;
+          if (distance < 120) {
+            const opacity = (1 - distance / 120) * 0.4;
+            ctx.strokeStyle = `hsl(183 100% 55% / ${opacity})`;
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
@@ -93,7 +93,7 @@ export const NetworkOverlay = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.3 }}
+      style={{ opacity: 0.6 }}
     />
   );
 };
