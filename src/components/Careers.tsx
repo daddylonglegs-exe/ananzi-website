@@ -284,104 +284,15 @@ export const Careers = () => {
               <Users className="h-12 w-12 text-accent mx-auto mb-4" />
               <h3 className="text-2xl font-semibold mb-4 text-foreground">Don't See Your Role?</h3>
               <p className="text-muted-foreground mb-6">
-                We're always interested in hearing from talented individuals. Send us your resume and 
+                We're always interested in hearing from talented individuals. Send us an email and 
                 let us know how you'd like to contribute to our team.
               </p>
-              <Dialog open={openDialog === 0} onOpenChange={(open) => setOpenDialog(open ? 0 : null)}>
-                <DialogTrigger asChild>
-                  <Button variant="outline">
-                    Send Resume
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>Submit Your Resume</DialogTitle>
-                    <DialogDescription>
-                      We'd love to hear from you! Fill out the form below and we'll keep your information on file for future opportunities.
-                    </DialogDescription>
-                  </DialogHeader>
-                  
-                  <form onSubmit={handleSubmit((data) => onSubmit(data, 'General Application'))} className="space-y-4">
-                    <div>
-                      <Label htmlFor="fullName-general">Full Name *</Label>
-                      <Input
-                        id="fullName-general"
-                        {...register('fullName')}
-                        placeholder="John Doe"
-                        className="mt-1"
-                      />
-                      {errors.fullName && (
-                        <p className="text-sm text-destructive mt-1">{errors.fullName.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="email-general">Email *</Label>
-                      <Input
-                        id="email-general"
-                        type="email"
-                        {...register('email')}
-                        placeholder="john@example.com"
-                        className="mt-1"
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="phone-general">Phone Number *</Label>
-                      <Input
-                        id="phone-general"
-                        type="tel"
-                        {...register('phone')}
-                        placeholder="+1 (555) 123-4567"
-                        className="mt-1"
-                      />
-                      {errors.phone && (
-                        <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="linkedin-general">LinkedIn Profile (Optional)</Label>
-                      <Input
-                        id="linkedin-general"
-                        type="url"
-                        {...register('linkedin')}
-                        placeholder="https://linkedin.com/in/yourprofile"
-                        className="mt-1"
-                      />
-                      {errors.linkedin && (
-                        <p className="text-sm text-destructive mt-1">{errors.linkedin.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="portfolio-general">Portfolio/Website (Optional)</Label>
-                      <Input
-                        id="portfolio-general"
-                        type="url"
-                        {...register('portfolio')}
-                        placeholder="https://yourportfolio.com"
-                        className="mt-1"
-                      />
-                      {errors.portfolio && (
-                        <p className="text-sm text-destructive mt-1">{errors.portfolio.message}</p>
-                      )}
-                    </div>
-
-                    <div className="flex gap-3 pt-4">
-                      <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1" disabled={isSubmitting}>
-                        Cancel
-                      </Button>
-                      <Button type="submit" className="flex-1" disabled={isSubmitting}>
-                        {isSubmitting ? 'Submitting...' : 'Submit'}
-                      </Button>
-                    </div>
-                  </form>
-                </DialogContent>
-              </Dialog>
+              <Button 
+                variant="outline"
+                onClick={() => window.location.href = 'mailto:careers@yourcompany.com?subject=Career Inquiry'}
+              >
+                Send Email
+              </Button>
             </div>
           </div>
         </ScrollReveal>
