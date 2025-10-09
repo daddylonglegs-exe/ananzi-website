@@ -103,71 +103,11 @@ const Contact = () => {
 
       {/* Contact Section */}
       <section className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="container mx-auto max-w-4xl">
             
-            {/* Contact Information */}
-            <ScrollReveal>
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-section-title mb-6">
-                    Get in <span className="text-accent">Touch</span>
-                  </h2>
-                  <p className="text-large text-muted-foreground leading-relaxed">
-                    Whether you have a project in mind, need expert advice, or just want to 
-                    explore possibilities, we'd love to hear from you.
-                  </p>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Mail className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground">Email Us</div>
-                      <a href="mailto:hello@ananzidigital.com" className="text-muted-foreground hover:text-accent transition-colors">
-                        hello@ananzidigital.com
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Phone className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground">Call Us</div>
-                      <a href="tel:+15551234567" className="text-muted-foreground hover:text-accent transition-colors">
-                        +1 (555) 123-4567
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <MapPin className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground">Visit Us</div>
-                      <div className="text-muted-foreground">New York, NY</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-8">
-                  <h3 className="text-xl font-semibold mb-4">Response Time</h3>
-                  <p className="text-muted-foreground">
-                    We typically respond within 24 hours during business days. 
-                    For urgent matters, please call us directly.
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-
             {/* Contact Form */}
-            <ScrollReveal delay={200}>
-              <div className="glass-card p-8 bg-card border border-border/20">
+            <ScrollReveal>
+              <div className="glass-card p-8 bg-card border border-border/20 mb-16">
                 <h3 className="text-2xl font-semibold mb-6">Send us a message</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -253,7 +193,65 @@ const Contact = () => {
                 </form>
               </div>
             </ScrollReveal>
-          </div>
+
+            {/* Contact Information */}
+            <ScrollReveal delay={200}>
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-section-title mb-6">
+                    Get in <span className="text-accent">Touch</span>
+                  </h2>
+                  <p className="text-large text-muted-foreground leading-relaxed">
+                    Whether you have a project in mind, need expert advice, or just want to 
+                    explore possibilities, we'd love to hear from you.
+                  </p>
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                      <Mail className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Email Us</div>
+                      <a href="mailto:hello@ananzidigital.com" className="text-muted-foreground hover:text-accent transition-colors">
+                        hello@ananzidigital.com
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                      <Phone className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Call Us</div>
+                      <a href="tel:+15551234567" className="text-muted-foreground hover:text-accent transition-colors">
+                        +1 (555) 123-4567
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                      <MapPin className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Visit Us</div>
+                      <div className="text-muted-foreground">New York, NY</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <h3 className="text-xl font-semibold mb-4">Response Time</h3>
+                  <p className="text-muted-foreground">
+                    We typically respond within 24 hours during business days. 
+                    For urgent matters, please call us directly.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
         </div>
       </section>
     </div>

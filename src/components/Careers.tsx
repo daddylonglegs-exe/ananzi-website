@@ -62,7 +62,6 @@ const applicationSchema = z.object({
   phone: z.string().min(10, 'Phone number must be at least 10 digits').max(20, 'Phone number must be less than 20 digits'),
   linkedin: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
   portfolio: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
-  resume: z.any().refine((files) => files?.length > 0, 'Resume is required'),
 });
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
@@ -89,11 +88,6 @@ export const Careers = () => {
       formData.append('linkedin', data.linkedin || '');
       formData.append('portfolio', data.portfolio || '');
       formData.append('jobTitle', jobTitle);
-      
-      // Add resume file
-      if (data.resume && data.resume[0]) {
-        formData.append('resume', data.resume[0]);
-      }
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
@@ -266,26 +260,6 @@ export const Careers = () => {
                             )}
                           </div>
 
-                          <div>
-                            <Label htmlFor={`resume-${job.id}`}>Resume (PDF) *</Label>
-                            <div className="mt-1">
-                              <Input
-                                id={`resume-${job.id}`}
-                                type="file"
-                                accept=".pdf"
-                                {...register('resume')}
-                                className="cursor-pointer"
-                              />
-                              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                                <Upload className="h-3 w-3" />
-                                Upload your resume in PDF format (max 5MB)
-                              </p>
-                            </div>
-                            {errors.resume && (
-                              <p className="text-sm text-destructive mt-1">{errors.resume.message as string}</p>
-                            )}
-                          </div>
-
                           <div className="flex gap-3 pt-4">
                             <Button type="button" variant="outline" onClick={() => setOpenDialog(null)} className="flex-1" disabled={isSubmitting}>
                               Cancel
@@ -394,26 +368,6 @@ export const Careers = () => {
                       />
                       {errors.portfolio && (
                         <p className="text-sm text-destructive mt-1">{errors.portfolio.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="resume-general">Resume (PDF) *</Label>
-                      <div className="mt-1">
-                        <Input
-                          id="resume-general"
-                          type="file"
-                          accept=".pdf"
-                          {...register('resume')}
-                          className="cursor-pointer"
-                        />
-                        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                          <Upload className="h-3 w-3" />
-                          Upload your resume in PDF format (max 5MB)
-                        </p>
-                      </div>
-                      {errors.resume && (
-                        <p className="text-sm text-destructive mt-1">{errors.resume.message as string}</p>
                       )}
                     </div>
 
