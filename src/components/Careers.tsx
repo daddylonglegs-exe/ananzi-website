@@ -289,9 +289,11 @@ export const Careers = () => {
               </p>
               <Button 
                 variant="outline"
-                onClick={() => window.location.href = 'mailto:careers@yourcompany.com?subject=Career Inquiry'}
+                asChild
               >
-                Send Email
+                <a href="mailto:careers@yourcompany.com?subject=Career Inquiry">
+                  Send Email
+                </a>
               </Button>
             </div>
           </div>
