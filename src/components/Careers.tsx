@@ -291,7 +291,7 @@ export const Careers = () => {
                 variant="outline"
                 asChild
               >
-                <a href="mailto:careers@yourcompany.com?subject=Career Inquiry">
+                <a href="mailto:mail@ananzi.tech?subject=Career Inquiry">
                   Send Email
                 </a>
               </Button>

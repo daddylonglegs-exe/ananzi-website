@@ -98,8 +98,8 @@ export const Contact = () => {
                   </div>
                   <div className="min-w-0">
                     <div className="font-semibold text-sm sm:text-base">Email Us</div>
-                    <a href="mailto:hello@ananzidigital.com" className="opacity-80 hover:text-accent transition-colors text-sm sm:text-base break-all">
-                      hello@ananzidigital.com
+                    <a href="mailto:mail@ananzi.tech" className="opacity-80 hover:text-accent transition-colors text-sm sm:text-base break-all">
+                      mail@ananzi.tech
                     </a>
                   </div>
                 </div>
