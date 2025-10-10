@@ -2,6 +2,8 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Footer } from '@/components/Footer';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Header } from '@/components/Header';
 
 export default function CaseStudy() {
   const caseStudy = {
@@ -25,16 +27,11 @@ export default function CaseStudy() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
+    <div className="min-h-screen bg-background">
+      <Header />
+      <Breadcrumbs />
+      <main id="main-content" className="pt-24 pb-16">
       <div className="container mx-auto px-6">
-        <ScrollReveal>
-          <div className="mb-8">
-            <Link to="/" className="inline-flex items-center text-accent hover:text-accent/80 transition-colors">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Link>
-          </div>
-        </ScrollReveal>
 
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -105,6 +102,7 @@ export default function CaseStudy() {
           </div>
         </ScrollReveal>
       </div>
+      </main>
       <Footer />
     </div>
   );

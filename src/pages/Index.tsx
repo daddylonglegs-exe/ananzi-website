@@ -12,7 +12,7 @@ const Index = () => {
     <div className="min-h-screen">
       <NetworkOverlay />
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <Services />
         <About />

@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Footer } from '@/components/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -83,8 +85,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <Breadcrumbs />
       
       {/* Hero Section */}
+      <main id="main-content">
       <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-background via-background to-primary/5">
         <div className="container mx-auto text-center">
           <ScrollReveal>
@@ -254,6 +258,8 @@ const Contact = () => {
             </ScrollReveal>
         </div>
       </section>
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -86,17 +86,24 @@ export const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 glass-card-large border-t-0 rounded-t-none">
+        {/* Mobile Navigation with smooth animation */}
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="mt-4 pb-4 glass-card-large border-t-0 rounded-t-none">
             <div className="flex flex-col space-y-4 pt-4">
-              {navLinks.map((link) => {
+              {navLinks.map((link, index) => {
                 const isAnchor = link.href.startsWith('#');
                 return isAnchor ? (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="nav-link text-lg"
+                    className="nav-link text-lg transition-all duration-200"
+                    style={{ 
+                      transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms' 
+                    }}
                     onClick={(e) => {
                       handleAnchorClick(e, link.href);
                       setIsMobileMenuOpen(false);
@@ -108,7 +115,10 @@ export const Header = () => {
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="nav-link text-lg"
+                    className="nav-link text-lg transition-all duration-200"
+                    style={{ 
+                      transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms' 
+                    }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}
@@ -117,7 +127,7 @@ export const Header = () => {
               })}
             </div>
           </div>
-        )}
+        </div>
       </nav>
       </header>
     </>
