@@ -12,7 +12,13 @@ export const Header = () => {
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (location.pathname !== '/') {
       e.preventDefault();
-      navigate('/' + href);
+      navigate('/', { replace: false });
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
