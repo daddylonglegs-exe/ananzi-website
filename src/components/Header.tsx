@@ -50,13 +50,15 @@ export const Header = () => {
       >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="font-black text-2xl tracking-tight hover:opacity-80 transition-opacity cursor-pointer"
-          >
-            Ananzi<span className="text-accent">.</span>
-          </Link>
+          {/* Logo - hidden on portfolio, careers, and contact pages */}
+          {!['/portfolio', '/careers', '/contact'].includes(location.pathname) && (
+            <Link 
+              to="/" 
+              className="font-black text-2xl tracking-tight hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              Ananzi<span className="text-accent">.</span>
+            </Link>
+          )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
