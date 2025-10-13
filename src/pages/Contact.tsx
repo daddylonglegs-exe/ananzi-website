@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Footer } from '@/components/Footer';
 
 const Contact = () => {
@@ -85,7 +84,6 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Breadcrumbs />
       
       {/* Hero Section */}
       <main id="main-content">

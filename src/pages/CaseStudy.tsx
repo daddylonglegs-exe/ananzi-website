@@ -2,7 +2,6 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Footer } from '@/components/Footer';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Header } from '@/components/Header';
 
 export default function CaseStudy() {
@@ -29,7 +28,6 @@ export default function CaseStudy() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <Breadcrumbs />
       <main id="main-content" className="pt-24 pb-16">
       <div className="container mx-auto px-6">
 
