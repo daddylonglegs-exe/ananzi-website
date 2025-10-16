@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Hero3D } from './Hero3D';
 
 export const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
