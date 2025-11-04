@@ -2,7 +2,6 @@ import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Hero3D } from './Hero3D';
 
 export const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -34,9 +33,6 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden pt-20">
-      {/* 3D Background */}
-      <Hero3D />
-      
       {/* Enhanced Background with Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20 -z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/40 -z-10" />
