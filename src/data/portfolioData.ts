@@ -13,6 +13,13 @@
 // import project1 from '@/assets/project1.jpg';
 // import brandVideo from '@/assets/brand-video.mp4';
 
+// Import your videos
+import video748 from '@/assets/Video-748.mp4';
+import video717 from '@/assets/Video-717.mp4';
+import video289 from '@/assets/Video-289.mp4';
+import tvmCeleb from '@/assets/tvm celeb OUT 2.mp4';
+import bmwXmas from '@/assets/BMW XMAS final.mp4';
+
 export interface PortfolioItem {
   type: 'image' | 'video';
   src: string;
@@ -22,6 +29,38 @@ export interface PortfolioItem {
 
 // Add your portfolio items here - just copy/paste and modify!
 export const portfolioItems: PortfolioItem[] = [
+  // Your local videos
+  { 
+    type: 'video', 
+    src: video748, 
+    title: 'Video Project 748', 
+    category: 'Videos' 
+  },
+  { 
+    type: 'video', 
+    src: video717, 
+    title: 'Video Project 717', 
+    category: 'Videos' 
+  },
+  { 
+    type: 'video', 
+    src: video289, 
+    title: 'Video Project 289', 
+    category: 'Videos' 
+  },
+  { 
+    type: 'video', 
+    src: tvmCeleb, 
+    title: 'TVM Celebrity', 
+    category: 'Videos' 
+  },
+  { 
+    type: 'video', 
+    src: bmwXmas, 
+    title: 'BMW Christmas', 
+    category: 'Videos' 
+  },
+  
   // Example structure - replace these with your own:
   { 
     type: 'image', 
